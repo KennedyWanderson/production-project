@@ -1,0 +1,28 @@
+{
+  "pieces": [
+    {
+      "id": "1",
+      "serialNumber": "12345A",
+      "quantity": 10,
+      "observation": "No defects"
+    },
+    {
+      "id": "2",
+      "serialNumber": "12345B",
+      "quantity": 5,
+      "observation": "Small scratch"
+    },
+    {
+      "id": "3",
+      "serialNumber": "12345C",
+      "quantity": 12,
+      "observation": "Missing part"
+    },
+    {
+      "id": "37b1",
+      "serialNumber": "1234",
+      "quantity": 2,
+      "observation": "test"
+    }
+  ]
+}
