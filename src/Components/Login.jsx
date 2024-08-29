@@ -4,8 +4,8 @@ import { useSpring, to, animated, config } from "@react-spring/web";
 import { scale, dist } from "vec-la";
 import { useDrag } from "react-use-gesture";
 
-import styles from '../styles.module.css'
-import NodeBox from "./NodeBox";
+import styles from './NodeBox.module.css'
+import BAckground from "./Background";
 
 
 export default function Login() {
@@ -29,10 +29,6 @@ export default function Login() {
         angle: 0,
         config: config.wobbly,
     }))
-    // direction calculates pointer direction
-    // memo is like a cache, it contains the values that you return inside "set"
-    // this way we can inject the springs current coordinates on the initial event and
-    // add movement to it for convenience
 
     const bind = useDrag(
         ({ xy, previous, down, movement: pos, velocity, direction }) => {
@@ -49,32 +45,49 @@ export default function Login() {
     )
 
     return (
-        <div className="flex flex-col h-screen items-center justify-center">
-            <div className="hidden md:block md:w-1/1 lg:w-2/1">
-                <h1 className="font-bold text-2xl">Production Page</h1>
+        <div className="flex h-screen items-center justify-center gap-8 ">
+
+            <div className="hidden w-full h-full md:block md:w-1/1 lg:w-2/1">
+                <BAckground />
             </div>
-                <animated.div
-                    className={styles.rocket}
-                    {...bind()}
-                    style={{
-                        transform: to(
-                            [pos, angle],
-                            // @ts-ignore
-                            ([x, y], a) => `translate3d(${x}px,${y}px,0) rotate(${a}rad)`
-                        ),
-                    }}
-                />
-            <form className="flex flex-col border-2 border-indigo-500 gap-4 p-10" onSubmit={handleLogin}>
-                <input className="px-4 py-3 rounded-lg bg-gray-200 mt-2
-                    border focus:border-blue-500 focus:bg-white
+            <div className="m-10 p-10 w-full md:w-1/2 lg:w-1/3">
+                <div className="flex justify-center items-center mb-10">
+                    <div className="hidden md:block md:w-1/1 lg:w-2/1">
+                        <h1 className="font-bold text-2xl ">Login Page</h1>
+                    </div>
+                    <animated.div
+                        className={styles.rocket}
+                        {...bind()}
+                        style={{
+                            transform: to(
+                                [pos, angle],
+                                // @ts-ignore
+                                ([x, y], a) => `translate3d(${x}px,${y}px,0) rotate(${a}rad)`
+                            ),
+                        }}
+                    />
+                </div>
+                <blockquote class="text-4xl font-semibold italic text-center text-slate-900">
+                    Good to
+                    <span class="before:block before:absolute before:-inset-0 before:-skew-y-3 before:bg-indigo-500 relative">
+                        <span class="relative text-white"> see </span>
+                    </span>
+                    you again
+                </blockquote>
+                <form className="flex flex-col w-full mt-10 gap-4" onSubmit={handleLogin}>
+                    <input className="px-4 py-3 rounded-lg bg-gray-200 mt-2
+                    border border-black focus:border-black focus:bg-white
                     focus:outline-none" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
-                <input className="px-4 py-3 rounded-lg bg-gray-200 mt-2
-                    border focus:border-blue-500 focus:bg-white
+                    <input className="px-4 py-3 rounded-lg bg-gray-200 mt-2
+                    border border-black focus:border-blue-500 focus:bg-white
                     focus:outline-none" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-                <button className="w-full bg-indigo-500 hover:bg-indigo-400
+                    <button className="w-full bg-indigo-500 hover:bg-indigo-400
                     text-white rounded-lg px-4 py-3 mt-6" type="submit">Login</button>
-                <p className="italic font-bold">Log with your user and password</p>
-            </form>
+                    <p className="italic font-bold">Log with your user and password</p>
+                </form>
+            </div>
+
+
         </div>
 
 
